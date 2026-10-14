@@ -1,5 +1,21 @@
 # Changelog
 
+## Linux (não lançado)
+- **Port nativo para Linux** (sem Wine/Proton). **Testado numa placa AMD** (Fedora): o jogo abre e
+  renderiza a abertura. **NVIDIA e Intel ainda precisam de teste.**
+- Loader: imagem abaixo de 2 GiB também no Linux (ponteiros de 31 bits do jogo); guarda do heap
+  BPE com `int3`/passo único via `SIGTRAP`; janela de leitura das threads auxiliares com leituras
+  precisas (a proteção volta pelo estado do rastreador de páginas); SSE4a interpretado no
+  `SIGILL`; pilha alternativa de sinal de 512 KiB por thread (pilhas das fibras sem página de
+  guarda); watchdog de diagnóstico desligado por padrão (`BB_TIMEOUT`).
+- Arquivos do jogo achados sem diferenciar maiúsculas e minúsculas (o jogo pede em minúsculas, o
+  dump tem nomes mistos). DLCs lidas com `opendir`. Leituras limpas dos *walkers* no Linux.
+- Build: `build.sh` com LF (`.gitattributes`), correções de portabilidade (GCC 14), xbyak em todas
+  as plataformas, FFmpeg mínimo em `out/ffmpeg` (`packaging/linux/build_ffmpeg.sh`).
+- `sotc.py` multiplataforma e com `SOTC_DATA_DIR`; `sotc.sh`; AppImage
+  (`packaging/linux/build_appimage.sh`) que pede a pasta do jogo na primeira abertura e acha os
+  módulos de som do shadPS4. Opções: `docs/sotc/LINUX.md`.
+
 ## 0.74.1 — 2026-11-10
 - **Atualização pelo lançador corrigida:** na fusão da 0.72.1-opt13 do Oussama268 (v0.73) o endereço das releases do atualizador (`launcher/sotc_update.py`) passou a ser o do fork dele, então os lançadores da v0.73 e da v0.74 procuravam atualização lá e nunca ofereciam a versão nova. Volta a ser este repositório, com um teste (`tests/test_update_repo.py`) que impede a troca de novo. Quem está na v0.73 ou na v0.74 precisa baixar a v0.74.1 à mão uma vez.
 
