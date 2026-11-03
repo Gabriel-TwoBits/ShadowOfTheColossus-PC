@@ -19,6 +19,9 @@
   upscaler, texturas, controles, saves...), com Python e Tk próprios dentro dela, sem instalar
   nada. Na primeira abertura ele lê o `sotc.ini` que já existir. `--play` joga com os ajustes
   salvos sem abrir a janela (opções de inicialização da Steam).
+- **Só no Windows:** o AMD FSR 4.1 (a AMD distribui o upscaler do SDK apenas como DLLs do Windows; a
+  opção não aparece no lançador do Linux) e a pré-leitura de páginas nas cópias de textura
+  (`SOTC_COPY_PREFETCH`).
 
 ## 0.74.1 — 2026-11-10
 - **Atualização pelo lançador corrigida:** na fusão da 0.72.1-opt13 do Oussama268 (v0.73) o endereço das releases do atualizador (`launcher/sotc_update.py`) passou a ser o do fork dele, então os lançadores da v0.73 e da v0.74 procuravam atualização lá e nunca ofereciam a versão nova. Volta a ser este repositório, com um teste (`tests/test_update_repo.py`) que impede a troca de novo. Quem está na v0.73 ou na v0.74 precisa baixar a v0.74.1 à mão uma vez.
